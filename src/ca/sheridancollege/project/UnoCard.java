@@ -35,13 +35,17 @@ public class UnoCard extends Card{
         }
     }
     
+    public Color getColor(){
+        return this.color;
+    }
+    
+    public Value getValue(){
+        return this.value;
+    }
+    
        @Override
     public String toString(){
-        return "color of card is: " + color +" value of card is: " + value;
+        return "color of card is: " + this.color +" value of card is: " + this.value;
     };
-
-
-
-
 
 }
