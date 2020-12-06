@@ -7,6 +7,7 @@ package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * The Deck class consists of 108 Uno cards. There are 4 suits: red, green, blue, yellow
@@ -38,48 +39,50 @@ public class GroupOfCards {
                      cards[cardsInDeck++] = new UnoCard(color, UnoCard.Value.getValue(j));
                      cards[cardsInDeck++] = new UnoCard(color, UnoCard.Value.getValue(j));
                  }
-                 
-                 
+                 UnoCard.Value[] values = new UnoCard.Value[]{UnoCard.Value.DrawTwo,UnoCard.Value.Skip,UnoCard.Value.Reverse };
+                 for(UnoCard.Value value : values){
+                     cards[cardsInDeck++] = new UnoCard(color, value);
+                     cards[cardsInDeck++] = new UnoCard(color, value);
+                     }
                  }
+                 
+         }
+    //used to check whether there is no card in the deck
+    public boolean isEmpty(){
+       return cardsInDeck == 0;
+    }
+    
+    public void shuffle(){
+        //n is for how many cards in the deck
+        int n = cards.length;
+        Random rand = new Random();
+        for(int i = 0; i < cards.length; i++){
+            //get a random index of array past the current index
+            int randomValue = i + rand.nextInt(n - i);
+            UnoCard randomCard = cards[randomValue];
+            cards[randomValue] = cards[i];
+            cards[i] = randomCard;
+       }
+    
+    
 }
-    
+public UnoCard drawCard() throws IllegalArgumentException{
+    if(isEmpty()){
+        throw new IllegalArgumentException("there is no card in the deck");
+    }
+    return cards[--cardsInDeck];
+} 
+
+//if someone play the drawTwo card, 
+public UnoCard[] drawCard(int n){
+    if(n > cardsInDeck){
+        throw new IllegalArgumentException("can not draw " + n + " there are only "+ cardsInDeck + "cards." );
+    }
+    UnoCard[] playerGet = new UnoCard[n];
+    for(int i=0; i < n; i++){
+        playerGet[i] = cards[--cardsInDeck];
+    }
+            return playerGet;
+}
         
-    
-    
-    
-    //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
-    private int size;//the size of the grouping
-
-    public GroupOfCards(int size) {
-        this.size = size;
-    }
-
-    /**
-     * A method that will get the group of cards as an ArrayList
-     *
-     * @return the group of cards.
-     */
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void shuffle() {
-        Collections.shuffle(cards);
-    }
-
-    /**
-     * @return the size of the group of cards
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * @param size the max size for the group of cards
-     */
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-}//end class
+}    

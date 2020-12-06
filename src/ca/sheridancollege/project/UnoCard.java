@@ -11,7 +11,7 @@ package ca.sheridancollege.project;
  */
 public class UnoCard extends Card{
      private Color color;
-    private Value value;
+     private Value value;
     
     public UnoCard(Color color, Value value){
         this.color = color;
