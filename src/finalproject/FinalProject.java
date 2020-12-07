@@ -41,6 +41,7 @@ public class FinalProject {
            if(i==0){
                for(int x = 0 ; x < 14; x++){
                    Card.cards.add(new Card(Color.Blue, x));
+                   System.out.println(Card.cards.get(x).toString());
                }
            }
            

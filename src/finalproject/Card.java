@@ -38,6 +38,13 @@ public class Card {
     public int getNumber(){
         return number;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" + "color=" + color + ", type=" + type + ", number=" + number;
+    }
+    
+    
     
     public static ArrayList<Card> cards = new ArrayList<Card>();
 }
